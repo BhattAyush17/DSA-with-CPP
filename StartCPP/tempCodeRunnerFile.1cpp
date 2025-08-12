@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <iostream>
+
+int main(){
+    int x;
+    std::cout << "Enter an integer: ";
+    scanf("%d", &x);
+    int y = x * x;
+    std::cout << "Square of " << x << " is " << y;
+    printf("\n");
+    return 0;
+} 

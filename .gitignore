@@ -1,0 +1,25 @@
+# Ignore environment and system folders
+.conda/
+.anaconda/
+.continuum/
+__pycache__/
+
+# Ignore config and system files
+*.json
+*.yaml
+*.yml
+*.env
+*.txt
+
+# Ignore Jupyter Notebook checkpoints
+*.ipynb_checkpoints
+*.csv
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+*.pyd
+*.log
