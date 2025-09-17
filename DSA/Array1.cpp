@@ -21,7 +21,6 @@ class Array{
     int count();
     int getCapacity();
     ~Array() { delete[] arr; } // Destructor to free memory
-
 };
 Array::Array(){
     arr=NULL;  // pointer to the array
