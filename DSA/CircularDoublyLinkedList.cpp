@@ -61,21 +61,7 @@ CDLL::~CDLL(){ // destructor
    deleteFirst();
 }
 
-CDLL & CDLL::operator=(CDLL &d){
-    if(this==&d) return *this;
-    while(start) deleteFirst();
-    node *temp ;
-    if(d.start==NULL){
-        start=NULL;
-    }
-    else{
-        temp=d.start;
-        do{
-            insertAtEnd(temp->item);
-            temp=temp->next;
-        }while(temp!=d.start);
-    }
-}
+// Removed duplicate copy-assignment operator (implementation already defined earlier)
 
 void CDLL::insertAtStart(int data){
     node *n = new node;
@@ -164,7 +150,7 @@ void CDLL::deleteLast(){
 void CDLL :: delnode(node *temp){
     if(start == NULL || temp==NULL){
         cout<<"Deletion cannot be performed";
-        
+        return;
     }
     else{
     }
