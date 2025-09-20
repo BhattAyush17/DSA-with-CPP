@@ -167,6 +167,9 @@ void CDLL :: delnode(node *temp){
             temp->prev->next = temp->next;
             temp->next->prev = temp->prev;
             delete temp;
+        
         }
+    
+    
     }
 }
