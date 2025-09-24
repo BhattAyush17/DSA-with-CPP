@@ -20,6 +20,8 @@ class queue{
       void del();
       ~queue();
       int count ();
+      queue(const queue &q);
+      queue & operator=(const queue &q);
          
       
 };
@@ -96,4 +98,17 @@ int queue :: count(){
     return capacity-front+rear+1;
     else
     return 1;
+}
+
+queue :: queue(const queue &q){
+    capacity =q.capacity;
+    front = q.front;
+    rear = q.rear;
+
+    
+
+}
+
+queue & queue::operator=(const queue &q){
+
 }
