@@ -1,16 +1,52 @@
 #include<iostream>
 using namespace std;
 
-class Cuboid{
+
+class Student{
     private:
-    int length, breadth, height:
+    int rollNo;
+    string name;
     public:
+    Student(){
+        cout<<"Enter roll number: ";
+        cin>>rollNo;
+        cout<<"Enter name: ";
+        cin>>name;
+    }
+    void showStudent(){
+        cout<<"Roll Number: "<<rollNo<<endl;
+        cout<<"Name: "<<name<<endl;
+    }
+
+    class Room{
+        int roomNo;
+        string roomTypes;
+        bool is_AC;
+        float price;
+        public:
+        Room(int r, string rt, bool ac, float p){
+            roomNo=r;
+            roomTypes=rt;
+            is_AC=ac;
+            price=p;
+        }
+        }
+    };
+    
+
+    class Date{
+        private:
+        int d, m, y;
+        public :
+        Date(int d, int m , int y):
+        d(d), m(m), y(y){}
+    }
+
     Cuboid(int l , int b, int h){
         length=l;
         breadth=b;
         height=h;
-    }
-};
+    };
 
 class Customer{
     private:
