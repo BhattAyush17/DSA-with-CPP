@@ -110,5 +110,13 @@ queue :: queue(const queue &q){
 }
 
 queue & queue::operator=(const queue &q){
-
+    if(ptr)
+    delete[]ptr;
+    capacity =q.capacity;
+    front=q.front;
+    rear = q.rear;
+    ptr=new int[capacity];
+    for(int i=0; i<capacity; i++)
+    ptr[i]=q.ptr[i];
+    return *this;
 }
