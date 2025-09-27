@@ -21,6 +21,7 @@ class Array{
     int count();
     int getCapacity();
     ~Array() { delete[] arr; } // Destructor to free memory
+
 };
 Array::Array(){
     arr=NULL;  // pointer to the array
@@ -34,7 +35,7 @@ void Array:: createArray(int cap){
 }
 
 void Array::append(int data){
-    if(!isFull()){
+    if(!isFull()){ 
         lastIndex++;
         arr[lastIndex] = data;  
     }
@@ -83,7 +84,7 @@ Array::Array(Array &arr){
     capacity = arr.capacity;
     lastIndex = arr.lastIndex;
     this->arr = new int[capacity];
-    for(int i=0; i<=lastIndex; i++){
+    for(int i=0; i<=lastIndex; i++){ 
         this->arr[i] = arr.arr[i]; // copy elements
     }
 }
@@ -115,7 +116,7 @@ void Array::edit(int index, int newdata){
        return;
    }
    arr[index] = newdata;
-}
+} 
 Array::~Array() {
     delete[] arr;
 }
