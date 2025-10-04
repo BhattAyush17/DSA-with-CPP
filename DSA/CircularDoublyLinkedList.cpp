@@ -21,8 +21,8 @@ class CDLL{
     void insertAfter(node *temp, int data);
     void deleteFirst();
     void deleteLast();
+    void delnode(node *temp);
     void delnode(int data);
-
 };
 
 CDLL &CDLL :: operator=(CDLL &d){

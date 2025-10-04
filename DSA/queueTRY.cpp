@@ -25,6 +25,7 @@ class queue{
     public:
     queue(int cap);
     void insert(int data);
+    ~queue();
 
 };
 
@@ -50,6 +51,7 @@ void queue :: insert(int data){
 
 
     }
-
-
+}
+queue::~queue(){
+    delete []ptr;
 }
