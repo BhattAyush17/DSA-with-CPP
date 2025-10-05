@@ -55,3 +55,13 @@ void queue :: insert(int data){
 queue::~queue(){
     delete []ptr;
 }
+
+queue::queue(const queue &q){
+    capacity = q.capacity;
+    fr = q.fr;
+    rr = q.rr;
+    ptr = new int [capacity];
+    for(int i=0; i<capacity; i++)
+    ptr[i] = q.ptr[i];
+
+    }
