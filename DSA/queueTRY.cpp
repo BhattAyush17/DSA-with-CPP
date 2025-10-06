@@ -26,6 +26,10 @@ class queue{
     queue(int cap);
     void insert(int data);
     ~queue();
+    bool isEmpty();
+    bool isFull();
+    int getFront();
+    int getBack();
 
 };
 
@@ -47,7 +51,7 @@ void queue :: insert(int data){
     }else{
         ptr[rr+] = data;
         rr+;
-        pr++;
+        fr++;
 
 
     }
@@ -65,3 +69,24 @@ queue::queue(const queue &q){
     ptr[i] = q.ptr[i];
 
     }
+
+bool queue :: isEmpty(){
+    return (fr == -1);
+}
+bool queue :: isFull(){
+    return (rr == capacity - 1);
+}
+
+int queue :: getFront(){
+    if(isEmpty()){
+        throw INVALID_QUEUE_STATE;
+    }
+    return ptr[fr];
+}
+
+int queue :: getBack(){
+    if(isEmpty()){
+        throw INVALID_QUEUE_STATE;
+    }
+    return ptr[rr];
+}
