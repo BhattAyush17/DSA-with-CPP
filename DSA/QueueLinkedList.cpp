@@ -1,10 +1,11 @@
-// Queue using doubly Linked List
+// Queue using singly Linked List
 #include<iostream>
 using namespace std;
+#define EMPTY_LIST -1
+
 struct node{
     int data;
     node* next;
-    node* prev;
 };
 
 class Queue{
@@ -14,6 +15,10 @@ class Queue{
     public:
     Queue();
     void insert(int data);
+    int getrear();
+    int getfront();
+    int delfront();
+    ~Queue();
  
 
 Queue ::Queue()
@@ -26,11 +31,35 @@ Queue ::Queue()
         node * temp = new node();
         temp->data =data;
         temp->next = NULL;
-        temp-> prev = NULL;
         if(rear== NULL){
             rear = temp;
             front = temp;
 
         }
     }
+    int Queue:: getfront(){
+        if(front == NULL){
+            throw EMPTY_LIST;
+        }else{
+        return front->data;
+        }
+
+    }
+
+    int Queue :: getrear(){
+        if(rear ==  NULL){
+            return EMPTY_LIST;
+        }else{
+            return rear->data;
+        }
+    }
+
+    int Queue :: delfront(){
+        if(front == NULL){
+            throw EMPTY_LIST;
+        }else{
+            
+        }
+    }
+
 };

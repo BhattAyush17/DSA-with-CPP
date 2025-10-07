@@ -31,21 +31,11 @@ ssl::ssl() {
     start = NULL;
 }
 
-// deep copy
+// deep copy constructor
 ssl::ssl(ssl &list) {
-    node *temp; 
-    temp =list.start;
-    start=Null;
-   while(temp){
-    insertAtlast
-
-   } 
-}
-
-ssl::ssl(ssl &other) {
     start = NULL;
-    node *temp = other.start;
-    while (temp != NULL) {
+    node *temp = list.start;
+    while (temp) {
         insertAtEnd(temp->item);
         temp = temp->next;
     }
@@ -75,6 +65,7 @@ void ssl::insertAtEnd(int data) {
     }
 }
 
+// search for a node
 node* ssl::search(int data) {
     node *temp = start;
     while (temp) {
@@ -101,69 +92,74 @@ void ssl::insertAfter(node* prev_node, int data) {
 
 // Deleting the first node
 void ssl::deleteFirst() {
-  if(start == NULL){
-    cout << "List is empty, nothing to delete.";
-    return;
-  }
-  if(start->next == NULL) {
-    delete start;
-    start = NULL;
-  
-  }
-  else {
-    node *temp = start;
-    while(temp->next->next!=NULL)
-      temp = temp->next;
-    delete temp->next;
-    temp->next = NULL;
-  }
-
-  // Deleting a particular node
-  void ssl::deleteNode(node* temp) {
-   node *r;
-   try{
-    if(start == NULL || temp == NULL) {
-        throw 1; // throw an exception if the list is empty or node to delete is NULL
+    if (start == NULL) {
+        cout << "List is empty, nothing to delete.";
+        return;
     }
-    if(start == temp)
-    deleteFirst();
-  } else {
-      r=start;
-      while(r->next!=temp)
-      r=r->next;
-      r->next=temp->next;
-      delete temp;
-  }
-  catch(int e){
-  }
-  ssl::~ssl(){
-    while(start) {
+    node *temp = start;
+    start = start->next;
+    delete temp;
+}
+
+// Deleting the last node
+void ssl::deleteLast() {
+    if (start == NULL) {
+        cout << "List is empty, nothing to delete.";
+        return;
+    }
+    if (start->next == NULL) {
+        delete start;
+        start = NULL;
+    } else {
+        node *temp = start;
+        while (temp->next->next != NULL)
+            temp = temp->next;
+        delete temp->next;
+        temp->next = NULL;
+    }
+}
+
+// Deleting a particular node
+void ssl::deleteNode(node* temp) {
+    node *r;
+    try {
+        if (start == NULL || temp == NULL) {
+            throw 1; // throw an exception if the list is empty or node to delete is NULL
+        }
+        if (start == temp) {
+            deleteFirst();
+        } else {
+            r = start;
+            while (r->next != temp)
+                r = r->next;
+            r->next = temp->next;
+            delete temp;
+        }
+    } catch (int e) {
+        // silent catch block as per your flow
+    }
+}
+
+// destructor
+ssl::~ssl() {
+    while (start) {
         node *temp = start;
         start = start->next;
         delete temp;
     }
-  }
-}
-}
-ssl::ssl(ssl &list){
-    node *tempp;
-    temp=list.start;
-    start=NULL;
-    while(temp){
-        insertAtEnd(temp->item);
-        temp=temp->next;
-    }
 }
 
-ssl& ssl: operator=(ssl &list){
-    node  *temp;
-    temp =list.start;
-    while(start)
-    deleteFirst(); // clear the current list
+// assignment operator
+ssl& ssl::operator=(const ssl &list) {
+    node *temp;
+    temp = list.start;
 
-    while(temp){
+    while (start)
+        deleteFirst(); // clear the current list
+
+    while (temp) {
         insertAtEnd(temp->item);
-        temp=temp->next;
+        temp = temp->next;
     }
     return *this;
 }

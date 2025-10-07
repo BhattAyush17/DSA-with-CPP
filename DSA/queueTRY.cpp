@@ -11,18 +11,20 @@
 //       queue(const queue &q);
 //       queue & operator=(const queue &q);
 
-#include<stdio.h>
-#include<iostream>
+#include <stdio.h>
+#include <iostream>
 using namespace std;
 
 #define INVALID_QUEUE_STATE -1
+#define EMPTY_QUEUE -2
 
-class queue{
-    private:
+class queue {
+private:
     int capacity;
-    int fr , rr;
+    int fr, rr;
     int *ptr;
-    public:
+
+public:
     queue(int cap);
     void insert(int data);
     ~queue();
@@ -30,63 +32,88 @@ class queue{
     bool isFull();
     int getFront();
     int getBack();
-
+    queue(const queue &q);
+    queue &operator=(const queue &q);
 };
 
-queue :: queue(int cap){
+// constructor
+queue::queue(int cap) {
     capacity = cap;
     fr = -1;
-    rr =-1;
-    if(cap>0){
+    rr = -1;
+    if (cap > 0)
         ptr = new int[cap];
-    }
-        else{
-            ptr = NULL;
-        }
+    else
+        ptr = NULL;
 }
 
-void queue :: insert(int data){
-    if(capacity ==0|| rr == -1|| fr == -1){
+// insert element
+void queue::insert(int data) {
+    if (ptr == NULL || capacity == 0) {
         throw INVALID_QUEUE_STATE;
-    }else{
-        ptr[rr+] = data;
-        rr+;
-        fr++;
-
-
     }
-}
-queue::~queue(){
-    delete []ptr;
+    if (isFull()) {
+        cout << "Queue overflow!" << endl;
+        return;
+    }
+    if (fr == -1) {
+        fr = 0;
+    }
+    rr++;
+    ptr[rr] = data;
 }
 
-queue::queue(const queue &q){
+// destructor
+queue::~queue() {
+    delete[] ptr;
+}
+
+// copy constructor
+queue::queue(const queue &q) {
     capacity = q.capacity;
     fr = q.fr;
     rr = q.rr;
-    ptr = new int [capacity];
-    for(int i=0; i<capacity; i++)
-    ptr[i] = q.ptr[i];
-
-    }
-
-bool queue :: isEmpty(){
-    return (fr == -1);
+    ptr = new int[capacity];
+    for (int i = 0; i < capacity; i++)
+        ptr[i] = q.ptr[i];
 }
-bool queue :: isFull(){
+
+// assignment operator
+queue &queue::operator=(const queue &q) {
+    if (this != &q) {
+        delete[] ptr;
+        capacity = q.capacity;
+        fr = q.fr;
+        rr = q.rr;
+        ptr = new int[capacity];
+        for (int i = 0; i < capacity; i++)
+            ptr[i] = q.ptr[i];
+    }
+    return *this;
+}
+
+// check if empty
+bool queue::isEmpty() {
+    return (fr == -1 || fr > rr);
+}
+
+// check if full
+bool queue::isFull() {
     return (rr == capacity - 1);
 }
 
-int queue :: getFront(){
-    if(isEmpty()){
-        throw INVALID_QUEUE_STATE;
+// get front element
+int queue::getFront() {
+    if (isEmpty()) {
+        throw EMPTY_QUEUE;
     }
     return ptr[fr];
 }
 
-int queue :: getBack(){
-    if(isEmpty()){
-        throw INVALID_QUEUE_STATE;
+// get back element
+int queue::getBack() {
+    if (isEmpty()) {
+        throw EMPTY_QUEUE;
     }
     return ptr[rr];
 }
