@@ -22,8 +22,9 @@ public:
     bool isEmpty();
     int getfront();
     void del();
-    Queue(Queue&);
-    ~Queue();
+    Queue(const Queue&);
+    Queue & operator=(const Queue &q);
+    int count();
 
     
 };
@@ -75,8 +76,30 @@ void Queue :: del(){
 }
 
 Queue :: Queue(const Queue &q){
-    if(q.front == NULL){
-        front 
-    }
+  fr = rr = NULL;
+  node *t = q.fr;
+  while(t!=NULL){
+    insert(t->data);
+    t=t->next;
+  }
 }
+
+Queue &Queue:: operator =(const Queue &q){
+    while(fr!=NULL){
+       del();
+    }
+  node *t = q.fr;
+  while(t!=NULL){
+    insert(t->data);
+    t=t->next;
+  }
+}
+int Queue :: count(){
+    int c=0;
+    node *t = fr;
+    while(t!=NULL){
+        c++;
+        t=t->next;
+    }
+    return c;
 }
